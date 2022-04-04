@@ -1,5 +1,4 @@
 import React from 'react';
-
 class AddContact extends React.Component {
     state = {
         name:"",
@@ -16,9 +15,13 @@ class AddContact extends React.Component {
         this.props.addContactHandler(this.state)
         // to clear the fields
         this.setState({name:"", email:"",});
+        console.log(this.props)
+        window.location.href = "http://localhost:3000/"
+    
 
     }
     render() {
+         
         return (
             <div className="ui main">
                 <h2>Add Contact</h2>
@@ -31,7 +34,7 @@ class AddContact extends React.Component {
                         <label>Email</label>
                         <input type="text" name="email" placeholder="Email" value={this.state.email} onChange = {(e) => this.setState({email: e.target.value})}/>
                     </div>
-                    <button className="ui button blue">Add</button>
+                    <button  className="ui button blue" >Add</button>
                 </form>
 
             </div>
