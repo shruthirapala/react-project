@@ -1,9 +1,11 @@
-import './App.css';
 import React, {useState, useEffect} from 'react';
+import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
+import './App.css';
 import { v4 as uuid } from 'uuid';
 import Header from './Header';
 import AddContact from './AddContact';
 import ContactList from './ContactList';
+
 
 
 function App() {
@@ -34,11 +36,18 @@ useEffect(() => {
   // add to local storage
   localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(contacts));
 }, [contacts])
+
   return (
     <div className="ui container">
+      <Router>
       <Header />
-      <AddContact addContactHandler={addContactHandler}/>
-      <ContactList contacts = {contacts} getContactId={removeContactHandler}/>
+      <Routes>
+      <Route exact path="/" element={<ContactList/>}/>
+      <Route path="/add" element={<AddContact/>} />
+      </Routes>
+      {/* <AddContact addContactHandler={addContactHandler}/>
+      <ContactList contacts = {contacts} getContactId={removeContactHandler}/> */}
+      </Router>
     </div>
   );
 }
